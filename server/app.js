@@ -19,12 +19,16 @@ const io = new Server(server,{
 io.on("connection", (socket)=>{
     console.log('User connected');
     console.log('id', socket.id);
-    socket.on('message',(data)=>{
-        console.log(data);
-        socket.broadcast.emit('res',data);
+    socket.on('message',({room,message})=>{
+        console.log('room++',room, 'message++', message);
+        socket.to(room).emit('res',message);
     })
     socket.on('disconnect',()=>{
         console.log('user disconnected', socket.id);
+    });
+    socket.on('join',(room)=>{
+        socket.join(room);
+        console.log('user joined',room);
     })
 })
 app.get('/', (req,res)=>{
