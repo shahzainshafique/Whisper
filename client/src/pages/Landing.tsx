@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   SignedIn,
   SignedOut,
@@ -7,21 +6,44 @@ import {
 } from "@clerk/clerk-react";
 
 const Landing = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="flex justify-center items-center content-center h-screen">
       <div className="flex flex-col gap-4 self-center justify-center items-center">
         <h2 className="text-3xl font-bold text-gray-800">Welcome to Whisper</h2>
-        <SignInButton afterSignInUrl="/chat">
-          <button
-            type="button"
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
-          >
-            Sign In
-          </button>
-        </SignInButton>
+        <SignedOut>
+          <SignInButton afterSignInUrl="/chat">
+            <button
+              type="button"
+              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+            >
+              Sign In
+            </button>
+          </SignInButton>
+        </SignedOut>
         <SignedIn>
+          <a
+            href="/chat"
+            className="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50"
+          >
+            <span className="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+            <span className="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </span>
+            <span className="relative">Get Started</span>
+          </a>
           <UserButton />
         </SignedIn>
       </div>
