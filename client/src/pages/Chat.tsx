@@ -7,7 +7,7 @@ const Chat = () => {
     <>
       <div className="flex gap-4 bg-[#eeeeee]">
         <SideBar />
-        <div className="flex flex-col flex-1 max-w-[25%] mt-3">
+        <div className="flex flex-col flex-1 max-w-[25%] space-y-5 mt-3">
           <SearchBar />
           <People />
         </div>
