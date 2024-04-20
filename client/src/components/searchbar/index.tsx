@@ -2,7 +2,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const SearchBar = () => {
   return (
-    <section className="hidden lg:flex justify-evenly items-center content-center bg-white p-5 rounded-xl ">
+    <section className="hidden lg:flex justify-evenly items-center max-h-[5rem] content-center bg-white p-5 rounded-xl ">
       <h2 className="text-3xl font-bold text-gray-800">Chat</h2>
       <div className=" relative mx-auto text-gray-600">
         <input
