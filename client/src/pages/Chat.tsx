@@ -1,7 +1,8 @@
-import People from "../components/people";
-import ProfileBar from "../components/profilebar";
-import SearchBar from "../components/searchbar";
-import SideBar from "../components/sidebar";
+import ChatBox from "../components/chat/chatbox";
+import People from "../components/chat/people";
+import ProfileBar from "../components/chat/profilebar";
+import SearchBar from "../components/chat/searchbar";
+import SideBar from "../components/chat/sidebar";
 
 const Chat = () => {
   return (
@@ -14,6 +15,7 @@ const Chat = () => {
         </div>
         <div className="flex flex-col flex-grow max-w-full space-y-5 mt-3 mr-4">
           <ProfileBar name={"Jane Smith"} status={"Online"} />
+          <ChatBox />
         </div>
       </div>
     </>
