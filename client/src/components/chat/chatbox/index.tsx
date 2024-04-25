@@ -9,7 +9,7 @@ const ChatBox = () => {
 
   console.log(dummyData);
   return (
-    <section className="hidden lg:flex flex-col bg-white p-5 rounded-xl space-y-5">
+    <section className="hidden h-full lg:flex flex-col bg-white p-5 rounded-xl space-y-5">
       {dummyData.map((message, index) => (
         <div
           className={`flex ${message.sent ? "justify-end" : "justify-start"}`}
