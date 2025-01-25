@@ -1,7 +1,11 @@
 import { BsThreeDots } from "react-icons/bs";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useUser } from '@clerk/clerk-react';
+
 
 const ProfileBar = ({ name, status }: { name: string; status: string }) => {
+  const { user } = useUser();
+  console.log('user',user);
   return (
     <section className="hidden lg:flex justify-between items-center max-h-[5rem] content-center bg-white p-5 rounded-xl ">
       <div className="flex flex-row items-center space-x-3">
@@ -22,7 +26,7 @@ const ProfileBar = ({ name, status }: { name: string; status: string }) => {
           </p>
         </div>
       </div>
-
+{user&& user.id}
       <div className="flex flex-row space-x-4 items-center">
         <button className="py-3 px-6 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border bg-white text-black hover:bg-black border-black hover:text-white disabled:opacity-50 disabled:pointer-events-none">
           Profile

@@ -7,7 +7,7 @@ const People = () => {
         name="Jane Smith"
         message="Hey, how's it going?"
         time="10:30 AM"
-        notifications={5}
+        notifications={99}
       />
       <Bar
         name="Jane Smith"
