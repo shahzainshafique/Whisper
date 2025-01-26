@@ -1,39 +1,35 @@
-import express from "express";
-import { Server } from "socket.io";
-import { createServer } from "http";
-import cors from "cors";
-const PORT = 3000;
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
-app.use(cors);
-const server = createServer(app);
+const server = http.createServer(app);
+const io = new Server(server);
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+// Serve a simple HTML page for testing
+app.get('/', (req, res) => {
+ res.send("<h1>Welcome to Socket.IO Chat</h1>");
 });
 
-io.on("connection", (socket) => {
-  console.log("User connected");
-  console.log("id", socket.id);
-  socket.on("message", ({ room, message }) => {
-    console.log("room++", room, "message++", message);
-    socket.to(room).emit("res", message);
+// Handle Socket.IO connections
+io.on('connection', (socket) => {
+  console.log('A user connected:', socket.id);
+
+  // Listen for incoming messages
+  socket.on('chat message', (msg) => {
+    console.log('Message received:', msg);
+    // Broadcast the message to all connected clients
+    io.emit('chat message', msg);
   });
-  socket.on("disconnect", () => {
-    console.log("user disconnected", socket.id);
-  });
-  socket.on("join", (room) => {
-    socket.join(room);
-    console.log("user joined", room);
+
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('A user disconnected:', socket.id);
   });
 });
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+
+// Start the server
+const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`Server is listening on port: ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
